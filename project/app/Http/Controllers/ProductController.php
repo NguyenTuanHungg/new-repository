@@ -70,5 +70,31 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('admin')->with('success', 'Product deleted successfully.');
     }
+    public function edits($id){
+        $products=Product::findOrFail($id);
+        $categories=Category::all();
+        return view('admin.edit', compact('products', 'categories'));
+
+    }
+    public function update($id,Request $request){
+        $products=Product::findOrFail($id);
+
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('assets/uploads/product' , $filename);
+
+            $products->image = $filename;
+        }
+
+        $products->category_id = $request->input('category_id');
+        $products->name = $request->input('name');
+        $products->description = $request->input('description');
+        $products->price = $request->input('price');
+
+        $products->update();
+        return redirect()->route('admin')->with('message','update successfully');
+    }
     
 }

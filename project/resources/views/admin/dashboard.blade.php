@@ -26,12 +26,14 @@
                         <img src="{{asset('assets/uploads/product/'.$product->image)}}" class="cate-image" alt="Image here" style="width:100px">
                     </td>
                     <td>
-                        {{-- <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="btn btn-primary">Sửa</a> --}}
-                        <form action="{{ route('delete', ['id' => $product->id]) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">Xóa</button>
-                        </form>
+                        <div class="d-flex">
+                            <a href="{{ route('edit', ['id' => $product->id]) }}" class="btn btn-primary btn-block mr-2" style="width:60px;heigth:40px">Sửa</a>
+                            <form action="{{ route('delete', ['id' => $product->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-block" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">Xóa</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach

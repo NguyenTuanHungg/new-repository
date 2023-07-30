@@ -26,7 +26,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
     Route::post('create',[ProductController::class,'create'])->name('insert');
     Route::get('add',[ProductController::class,'add'])->name('add');
     Route::delete('delete/{id}', [ProductController::class, 'destroy'])->name('delete');
-
+    Route::get('edit/{id}',[ProductController::class,'edits'])->name('edit');
+    Route::put('update/{id}',[ProductController::class,'update'])->name('update');
 });
 
 Route::group(['middleware'=>'guest'],function(){
