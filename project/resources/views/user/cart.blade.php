@@ -11,7 +11,7 @@
             <div class="text-center mb-4">
                 <h2 class="section-title px-5"><span class="px-2">Cart</span></h2>
             </div>
-
+            
             @if($countCart > 0)
             <table class="table table-striped">
                 <thead>
@@ -28,11 +28,11 @@
                     @foreach($cart as $item)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
-                        <td class="align-middle"><img src="{{ asset('assets/uploads/product/' . $item->products->image) }}" alt="" style="width: 100px;"></td>
-                        <td>{{ $item->products->name }}</td>
-                        <td>{{ $item->products->price }}</td>
+                        <td class="align-middle"><img src="{{ asset('assets/uploads/product/' . $item->product->image) }}" alt="" style="width: 100px;"></td>
+                        <td>{{ $item->product->name }}</td>
+                        <td>{{ $item->product->price }}</td>
                         <td>{{ $item->quantity }}</td>
-                        <td>{{ $item->products->price * $item->quantity }}</td>
+                        <td>{{ $item->product->price * $item->quantity }}</td>
                         <td>
 
                         </td>

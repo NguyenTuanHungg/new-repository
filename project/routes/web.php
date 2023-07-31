@@ -46,4 +46,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::get('cart', [CartController::class, 'shopCart'])->name('cart');
-Route::post('addProduct', [CartController::class, 'addProduct'])->name('addProduct');
+Route::post('cart', [CartController::class, 'addProduct'])->name('addProduct');

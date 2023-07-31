@@ -8,23 +8,25 @@
         </div>
         <div class="col-md-9">
             <!-- Main content goes here -->
+            <form method="POST" action="{{ route('addProduct') }}">
             <div class="row">
                 @foreach($products as $product)
                 <div class="col-md-4 mb-4">
                     <div class="card">
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="number" name="quantity" value="1" min="1">
                         <img src="{{asset('assets/uploads/product/'.$product->image)}}" class="card-img-top" alt="{{ $product->name }}" style="width: 200px;">
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <p class="card-text">{{ $product->price }}</p>
-                            <form method="POST" action="{{ route('addProduct') }}" enctype="multipart/form-data">
                                 @csrf
-                                <button class="btn btn-primary">Add to cart</button>
-                            </form>
-                        </div>s
+                                <button type="submit" class="btn btn-primary">Add to cart</button>
+                                                
                     </div>
                 </div>
                 @endforeach
             </div>
+        </form> 
         </div>
     </div>
 </div>

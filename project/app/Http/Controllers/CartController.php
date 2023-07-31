@@ -28,15 +28,13 @@ class CartController extends Controller
                     $cartItem->product_id = $product_id;
                     $cartItem->quantity = $quantity;
                     $cartItem->user_id = Auth::id();
-
                     $cartItem->save();
-                    dd($cartItem);
 
-                    return response()->json(['status' => "Product added to cart successfully."]);
+                    return redirect()->route('cart')->with('message', 'add');
                 }
             }
         } else {
-            return response()->json(['status' => "Login to continue."]);
+            return redirect()->route('login')->with('message', 'login');
         }
     }
     public function shopCart()
