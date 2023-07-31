@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
 use App\Models\Product;
 use App\Http\Controllers\ProductController;
 
@@ -21,26 +23,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
-    Route::get('product',[ProductController::class,'index'])->name('admin');
-    Route::post('create',[ProductController::class,'create'])->name('insert');
-    Route::get('add',[ProductController::class,'add'])->name('add');
+Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('product', [ProductController::class, 'index'])->name('admin');
+    Route::post('create', [ProductController::class, 'create'])->name('insert');
+    Route::get('add', [ProductController::class, 'add'])->name('add');
     Route::delete('delete/{id}', [ProductController::class, 'destroy'])->name('delete');
-    Route::get('edit/{id}',[ProductController::class,'edits'])->name('edit');
-    Route::put('update/{id}',[ProductController::class,'update'])->name('update');
+    Route::get('edit/{id}', [ProductController::class, 'edits'])->name('edit');
+    Route::put('update/{id}', [ProductController::class, 'update'])->name('update');
 });
 
-Route::group(['middleware'=>'guest'],function(){
-    Route::get('login',[AuthController::class,'index'])->name('login');
-    Route::get('register',[AuthController::class,'register_index'])->name('register');
-    Route::post('login',[AuthController::class,'login'])->name('login');
-    Route::post('register',[AuthController::class,'register'])->name('register');
-
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('login', [AuthController::class, 'index'])->name('login');
+    Route::get('register', [AuthController::class, 'register_index'])->name('register');
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+    Route::post('register', [AuthController::class, 'register'])->name('register');
 });
 
 
-Route::group(['middleware'=>'auth'],function(){
-    Route::get('home',[AuthController::class,'home'])->name('home');
-    Route::get('logout',[AuthController::class,'logout'])->name('logout');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
+Route::get('home', [HomeController::class, 'index'])->name('home');
+Route::get('cart', [CartController::class, 'shopCart'])->name('cart');
+Route::post('addProduct', [CartController::class, 'addProduct'])->name('addProduct');
