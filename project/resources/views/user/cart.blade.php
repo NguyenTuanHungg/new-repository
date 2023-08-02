@@ -11,7 +11,7 @@
             <div class="text-center mb-4">
                 <h2 class="section-title px-5"><span class="px-2">Cart</span></h2>
             </div>
-            
+
             @if($countCart > 0)
             <table class="table table-striped">
                 <thead>
@@ -34,17 +34,14 @@
                         <td>{{ $item->quantity }}</td>
                         <td>{{ $item->product->price * $item->quantity }}</td>
                         <td>
-
+                            <form action="{{ route('deleteCart', $item->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this item from your cart?')">Remove</button>
+                            </form>
                         </td>
                     </tr>
-                    @php
-                    $itemId = $item->id;
-                    @endphp
-                    <div class="input-group">
-                        <button type="button" class="btn btn-sm btn-secondary" onclick="updateQuantity({ $itemId}, 'decrease')">-</button>
-                        <input type="text" class="form-control text-center" value="{{ $item->quantity }}" disabled>
-                        <button type="button" class="btn btn-sm btn-secondary" onclick="updateQuantity({ $itemId }, 'increase')">+</button>
-                    </div>
+
                     @endforeach
                 </tbody>
             </table>
