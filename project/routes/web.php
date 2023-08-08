@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Models\Product;
 use App\Http\Controllers\ProductController;
@@ -37,6 +38,8 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('register', [AuthController::class, 'register_index'])->name('register');
     Route::post('login', [AuthController::class, 'login'])->name('login');
     Route::post('register', [AuthController::class, 'register'])->name('register');
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('requestPassword');
+    Route::post('/forgotPassword', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('forgotPassword');
 });
 
 

@@ -57,7 +57,7 @@
                                     {{ __('Đăng nhập') }}
                                 </button>
 
-                                <a class="btn btn-link" href="">
+                                <a class="btn btn-link" href="{{route('requestPassword')}}">
                                     {{ __('Quên mật khẩu?') }}
                                 </a>
                             </div>
