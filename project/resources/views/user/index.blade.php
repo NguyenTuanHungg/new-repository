@@ -18,13 +18,12 @@
                                 <img src="{{ asset('assets/uploads/product/'.$product->image) }}" class="card-img-top" alt="{{ $product->name }}">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">{{ $product->name }}</h5>
+                                <a href="{{ route('product.show', $product->id) }}" style="text-decoration: none;color:black;">{{ $product->name }}</a>
                                 <p class="card-text">{{ $product->price }}</p>
                                 <form method="POST" action="{{ route('addProduct') }}">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <div class="form-group">
-                                        <label for="quantity">Quantity:</label>
                                         <input type="number" name="quantity" value="1" min="1" class="form-control">
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-3">Add to cart</button>
