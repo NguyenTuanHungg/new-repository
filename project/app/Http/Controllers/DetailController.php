@@ -14,6 +14,11 @@ class DetailController extends Controller
     {
         $product = Product::findOrFail($id);
 
+
+        if (!$product) {
+            return redirect('admin')->with('error', 'Product not found.');
+        }
+
         return view('user.detail', compact('product'));
     }
 }
