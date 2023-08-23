@@ -19,15 +19,7 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
         if (\Auth::attempt($request->only('email', 'password'))) {
-            $user = \Auth::user();
-            $role = $user->role;
-
-            // Chuyển hướng người dùng đến trang tương ứng dựa trên vai trò
-            if ($role == '1') {
-                return redirect()->route('admin');
-            } elseif ($role == '0') {
-                return redirect()->route('home');
-            }
+            return redirect()->route('admin');
         }
         return redirect('login')->withError('Error');
     }

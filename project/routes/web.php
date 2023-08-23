@@ -9,6 +9,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Models\Product;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RatingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +55,4 @@ Route::post('addPr', [CartController::class, 'addProduct'])->name('addProduct');
 Route::delete('deleteCart/{id}', [CartController::class, 'removeProduct'])->name('deleteCart');
 Route::get('searchPr', [HomeController::class, 'searchProducts'])->name('searchPr');
 Route::get('/product/{id}', [DetailController::class, 'detail'])->name('product.show');
+Route::get('/rating', [RatingController::class, 'rating'])->name('rating');
