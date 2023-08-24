@@ -21,7 +21,6 @@ class DetailController extends Controller
         if (!$product) {
             return redirect('admin')->with('error', 'Product not found.');
         }
-
         return view('user.detail', compact('product', 'exist_rate'));
     }
 }
